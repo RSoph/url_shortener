@@ -1,0 +1,8 @@
+<h1>Welcome to Kate's Url Shortener!</h1>
+
+<p>Please enter a long URL below</p>
+
+<%= form_for @url, url: {action: "create"}, do |f| %>
+  <%= f.text_field :url %>
+  <%= f.submit "Shorten!" %>
+<% end %>
