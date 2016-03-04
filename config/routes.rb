@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'url#index'
 
-  get 'url/show' => 'url#show'
+  get 'url/show/:id' => 'url#show'
   post 'urls' => 'url#create'
   get 'url/leaderboard' => 'url#leaderboard'
 

@@ -16,14 +16,14 @@ class UrlController < ApplicationController
 		@url.count ||= 0
 		@url.count += 1
 		if @url.save
-    	 	redirect_to url_show_path(@url)
+    	 	redirect_to "/url/show/#{@url.id}"
     	else
     		render "index"
     	end
 	end
 
 	def show
-		@url = Url.find(params[:format])
+		@url = Url.find(params[:id])
 	end
 
 	def make_it_so
