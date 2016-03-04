@@ -5,19 +5,24 @@ class UrlController < ApplicationController
 	end
 
 	def create
-		@url = Url.new(long_url: params[:url][:long_url])
-
+		address = params[:url][:long_url]
+		address = "http://" + address unless address[0..3] == "http"
+		@url = Url.new(long_url: address)
 		if @url.save
-     	redirect_to url_show_path(@url)
+    	 	redirect_to url_show_path(@url)
     	else
-      # This line overrides the default rendering behavior, which
-      # would have been to render the "create" view.
-      render "index"
+    		render "index"
     	end
 	end
 
 	def show
 		@url = Url.find(params[:format])
+	end
+
+	def make_it_so
+		@url = Url.find(params[:id])
+		@address = @url.long_url
+		redirect_to @address
 	end
 
 	private
