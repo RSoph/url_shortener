@@ -4,6 +4,7 @@ class IndexTest < ActionController::TestCase
 
   def setup
     @controller = UrlController.new
+
   end
   
   test "page loads" do
