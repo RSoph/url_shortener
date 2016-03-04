@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'url/show' => 'url#show'
   post 'urls' => 'url#create'
+  get 'url/leaderboard' => 'url#leaderboard'
 
   get 'url/:id' => 'url#make_it_so'
   # The priority is based upon order of creation: first created -> highest priority.

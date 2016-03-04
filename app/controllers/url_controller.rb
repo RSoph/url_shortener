@@ -4,6 +4,10 @@ class UrlController < ApplicationController
 		@url = Url.new
 	end
 
+	def leaderboard
+		@list = [1, 2, 3]
+	end
+
 	def create
 		address = params[:url][:long_url]
 		address = "http://" + address unless address[0..3] == "http"
