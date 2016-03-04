@@ -5,13 +5,16 @@ class UrlController < ApplicationController
 	end
 
 	def leaderboard
-		@list = [1, 2, 3]
+		@list = Url.order(count: :desc)[0..99]
 	end
 
 	def create
 		address = params[:url][:long_url]
 		address = "http://" + address unless address[0..3] == "http"
-		@url = Url.new(long_url: address)
+		@url = Url.find_by(long_url: address)
+		@url ||= Url.new(long_url: address)
+		@url.count ||= 0
+		@url.count += 1
 		if @url.save
     	 	redirect_to url_show_path(@url)
     	else
