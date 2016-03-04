@@ -4,7 +4,9 @@
 
 <p>Short url: <a href=<%=@url.long_url%>><%="http://localhost:3000/url/#{@url.id}"%></a></p>
 
-<p>This url has been shortened <%=@url.count if @url.count%> times.</p>
+<%@count = "once"%>
+<%@count = "#{@url.count} times" unless @url.count == 1%>
+<p>This url has been shortened <%=@count%>.</p>
 
 <br><br>
 

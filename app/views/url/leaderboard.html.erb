@@ -3,8 +3,10 @@
 <p>These are the top 100 shortened urls:</p>
 <ol>
 	<%@list.each do |item| %>
+		<%@count = "once"%>
+		<%@count = "#{item.count} times" unless item.count == 1%>
 		<li>
-			<%= "#{item.long_url} has been shortened #{item.count || 1} times." %>
+			<%= "#{item.long_url} has been shortened #{@count}." %>
 		</li>
 	<%end%>
 </ol>
