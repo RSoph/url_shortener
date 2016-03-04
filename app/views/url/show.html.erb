@@ -1,10 +1,12 @@
 <h1>Here's your shiny new shortened URL!</h1>
 
-<p>Long url:</p>
-<%=@url.long_url%>
-<p>Short url:</p>
-<a href=<%=@url.long_url%>><%="http://localhost:3000/url/#{@url.id}"%></a>
+<p>Long url: <%=@url.long_url%></p>
+
+<p>Short url: <a href=<%=@url.long_url%>><%="http://localhost:3000/url/#{@url.id}"%></a></p>
+
+<p>This url has been shortened <%=@url.count if @url.count%> times.</p>
 
 <br><br>
 
-<a href='/'>Go back and make another!</a>
+<a href='/'>Go back and make another!</a><br>
+<a href='/url/leaderboard'>See the leaderboard</a>

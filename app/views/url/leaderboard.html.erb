@@ -4,7 +4,7 @@
 <ol>
 	<%@list.each do |item| %>
 		<li>
-			<%= item %>
+			<%= "#{item.long_url} has been shortened #{item.count || 1} times." %>
 		</li>
 	<%end%>
 </ol>
