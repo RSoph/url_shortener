@@ -1,28 +1,20 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a URL shortening application, it allows a user to enter any URL, and provides with a shortened version, which when put into the browser, redirects to the original URL.
 
-Things you may want to cover:
+Running
+This app was written with ruby 2.0.0p481, and Rails 4.2.0. It requires several third-party gems, as listed in the Gemfile.
+Download the app, run 'bundle install', then 'rake db:migrate', then 'rails s'. In the browser, go to 'http://localhost:3000' - or whatever port you generally use by default.
 
-* Ruby version
+Features
+Shortened urls are of the form: 'domain/url/:id', where id is the database id of the short url. I could have used a random alphanumeric code, or a dictionary word. However utilitzing the database id is more memory-efficient, and keeps the code as short as possible. Obviously this allows anyone to guess what short URLs might be - any id less than the last one, but I do not see any security issues with making urls easy to guess.
 
-* System dependencies
+It would be a waste of database space to keep multiple short URLs for the same long one, and would make constructing the leaderboard a daunting project. Therefore I added a 'count' attribute to each url, and use it to protect against duplication (further keeping the codes to a reasonable number) as well as determining the order of the leaderboard. With more time, I think I would make an additional leaderboard that showed the top 100 domains, since the URL to a particular product on amazon.com is only likely to come up once in a while, but 'amazon.com' itself frequently. Most likely I would use regex pattern matching to count up domains, but then of course I'd have two problems.
 
-* Configuration
+I was uncertain what to do in the case that a user enters a string that is not a valid URL. I considered having the 'url#create' method ping the url and require a 200 status before proceeding, but ultimately I think that would take too long - for the most part users can be trusted to copy and paste URLs correctly, and making sure they do does not justify an additional second of runtime. I settled on treating all user-entered strings as if they were valid URLs, only checking that they begin with "http".
 
-* Database creation
+I have tried to test as extensively as is reasonable. The fastest way to get test coverage is generally by writing integration tests, since these test the controller, model and view at the same time. For this reason I have used exclusively integration testing. Naturally, more tests are always desirable, and I would add more as further development if given more time.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+I have not spent a great deal of time on the front end, only installed bootstrap to make the whole thing more presentable. Naturally a designer could absolutely go to town on this - but I am not a designer.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
